@@ -1,0 +1,127 @@
+
+
+
+
+.Eligibility .containerBody {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.Eligibility .containerImage{
+    width: 50%;
+}
+.Eligibility .containerBody img{
+    width: 100%;
+}
+
+.Eligibility .contentBox {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    width: 35rem;
+}
+
+.Eligibility .contentBox b:first-child {
+    font-size: .8rem;
+}
+
+.Eligibility .contentBox .steps {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    background-color: transparent;
+}
+
+.Eligibility .contentBox .steps .line {
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: rgb(175, 175, 175);
+    z-index: -1;
+}
+
+.Eligibility .contentBox .steps .circle {
+    width: 2rem;
+    height: 2rem;
+    background-color: #00819A;
+    border-radius: 50%;
+    border: .5rem solid #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: .65rem;
+}
+
+.Eligibility .contentBox .steps .circle.grey{
+    background-color: grey;
+}
+
+.Eligibility .contentBox b:nth-child(3) {
+    font-size: 1.5rem;
+}
+
+
+
+.Eligibility .radio label {
+    border: .5px solid rgb(209, 209, 209);
+    padding: .8rem 1.3rem;
+    margin-bottom: .8rem;
+    display: flex;
+    gap: 1rem;
+    color: rgb(51, 51, 51);
+    font-size: .85rem;
+    transition:background-color .25s;
+}
+
+.Eligibility .radio label:hover{
+    
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.Eligibility .contentBox .btn {
+    padding: 1rem 2.5rem;
+    margin-bottom: .8rem;
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+}
+
+.Eligibility .contentBox .btn button {
+    padding: .6rem 1.3rem;
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid #dadada;
+    color: #00819A;
+    background-color: #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .2s ease-in-out;
+}
+
+.Eligibility .contentBox .btn button:nth-child(2) {
+    background-color: #00819A;
+    color: #ffffff;
+}
+
+.Eligibility .contentBox .btn button:nth-child(2):hover {
+    background-color: rgb(19, 121, 112);
+    color: #ffffff;
+}
+
+@media(width<900px){
+    .Eligibility .containerBody {
+        flex-direction: column;
+    }
+    .Eligibility .containerBody img{
+        width: 100%;
+        height: 100%;
+    }
+    .Eligibility .contentBox {
+        min-width: 100%;
+    }
+}
