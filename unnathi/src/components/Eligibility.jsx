@@ -5,7 +5,7 @@ import './Eligibility.css'
 const Eligibility = (props) => {
     
     const [currSection,setCurrSection] = useState(0)
-    const radioDataRef = useRef(Array(currSection).fill(null))
+    const [radioData,setRadioData] = useState(Array(3).fill(null))
     
     const sectionCount = 3;//following list should be of this size
     const questions = [
@@ -18,14 +18,16 @@ const Eligibility = (props) => {
         "https://apply.teachforindia.org/assets/img/Maskgroup_2_1.png",
         "https://apply.teachforindia.org/assets/img/MaskgroupMobile_2_2.png"
     ]
-    const radioData = [
+    const radioValue = [
             ["I'm a graduate","I will graduate by July 2024","I will not graduate by July 2024"],
             ["Indian citizen","Overseas Citizen of India (OCI)","Not an Indian citizen"],
             ["Yes, it's my first application","No, I've applied since July 2023"]
     ]
 
     const handleRadioClick = (e)=>{
-        radioDataRef.current[currSection]=e.target.value
+        const temp = [...radioData]
+        temp[currSection] = e.target.value
+        setRadioData(temp)
     }
 
     const handleSectionChange = (direction)=>{
@@ -46,7 +48,6 @@ const Eligibility = (props) => {
     }
     return (
     <div className='Eligibility'>
-        
         <div className="containerBody">
         <div className='containerImage'>
             <img src={images[currSection]} alt=""/>
@@ -75,16 +76,17 @@ const Eligibility = (props) => {
             <b>{questions[currSection]}</b>
             <div className='radio'>
                     {
-                        radioData[currSection]
+                        radioValue[currSection]
                         .map((label,index)=>{
                             return(
-                                <label htmlFor={`radio1${index}`} key={`rkey${index}`}>
+                                <label htmlFor={`radio1${index}`} key={label.toString()}>
                                     <input 
                                     type="radio" 
                                     name="radio" 
                                     id={`radio1${index}`} 
                                     value={label}
-                                    onClick={handleRadioClick}
+                                    onChange={handleRadioClick}
+                                    checked={label===radioData[currSection]}
                                     />
                                     {label}
                                 </label>
