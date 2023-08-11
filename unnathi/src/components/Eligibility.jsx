@@ -41,15 +41,17 @@ const Eligibility = (props) => {
                 setCurrSection(currSection-1)   
         }
         if(direction===1){//Go front
-            if(currSection===2){//At last seciton
-                if(
-                    radioData[0]===radioValue[0][2] ||
-                    radioData[1]===radioValue[1][2] ||
-                    radioData[2]===radioValue[2][1]
-                ){//Not Eligible
-                    setPage('NotEligible')
-                    console.log('NE')
-                }
+            if(
+                radioData[0]===radioValue[0][2] ||
+                radioData[1]===radioValue[1][2] ||
+                radioData[2]===radioValue[2][1]
+            ){//Not Eligible
+                setPage('NotEligible')
+                setCurrSection(0)
+                console.log('NE')
+            }
+            else if(currSection===2){//At last seciton
+                
             }
             else
                 setCurrSection(currSection+1)
@@ -76,14 +78,21 @@ const Eligibility = (props) => {
                         <li>Must be a citizen of India or Overseas Citizen of India</li>
                         <li>Only one application is allowed per person per cohort year, that is, since July 2023</li>
                     </ol>
-                    <p>If you're not eligible to work in India, you can apply to a <a href="https://teachforall.org/teach-your-country" target="_blank">Teach For All Fellowship in a different country</a>.</p>
+                    <p>If you're not eligible to work in India, you can apply to a <a href="https://teachforall.org/teach-your-country">Teach For All Fellowship in a different country</a>.</p>
                     <br />
-                    <p>If you have already applied before since July 2023 or will not graduate before June/July 2024, you can visit <a href="http://www.teachforindia.org/" target="_blank">our website</a> to explore other internship or volunteering opportunities with us.</p>
+                    <p>If you have already applied before since July 2023 or will not graduate before June/July 2024, you can visit <a href="http://www.teachforindia.org/">our website</a> to explore other internship or volunteering opportunities with us.</p>
                     <br/>
                     <p>If you actually fit all the criteria, answer the 'eligibility check' questions again!</p>
 
                     <div className="btn">
-                        <button onClick={()=>setPage(null)}>Try Again</button>
+                        <button 
+                        onClick={()=>{
+                            setPage(null)
+                            setRadioData(Array(3).fill(null))
+                        }}
+                        >
+                            Try Again
+                        </button>
                     </div>
                 </div>
             </div>
