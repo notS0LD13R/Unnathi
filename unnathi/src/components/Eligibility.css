@@ -1,6 +1,12 @@
 
+.Eligibility li {
+    list-style: number inside
+}
 
-
+.Eligibility a{
+    text-decoration: none;
+    color: rgb(0, 129, 154);
+}
 
 .Eligibility .containerBody {
     display: flex;
@@ -13,7 +19,20 @@
 }
 .Eligibility .containerBody img{
     width: 100%;
+    object-fit: cover;
+    height: 70%;
 }
+
+.NotEligible .containerBody {
+    align-items: stretch;
+}
+
+.NotEligible .containerImage{
+    display: flex;
+    align-items: center;
+}
+
+
 
 .Eligibility .contentBox {
     display: flex;
@@ -123,5 +142,9 @@
     }
     .Eligibility .contentBox {
         min-width: 100%;
+    }
+    .NotEligible .containerImage{
+        width: 100%;
+        padding:1rem 2rem ;
     }
 }
