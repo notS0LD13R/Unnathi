@@ -12,6 +12,8 @@
     display: flex;
     gap: 1rem;
     align-items: center;
+    width: 100vw;
+    height: 100vh;
 }
 
 .Eligibility .containerImage{

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import {BsCheckLg} from 'react-icons/bs'
 import './Eligibility.css'
 
@@ -41,17 +41,21 @@ const Eligibility = (props) => {
                 setCurrSection(currSection-1)   
         }
         if(direction===1){//Go front
-            if(
-                radioData[0]===radioValue[0][2] ||
-                radioData[1]===radioValue[1][2] ||
-                radioData[2]===radioValue[2][1]
-            ){//Not Eligible
-                setPage('NotEligible')
-                setCurrSection(0)
-                console.log('NE')
-            }
-            else if(currSection===2){//At last seciton
-                
+            
+            if(currSection===2){//At last seciton
+                if(
+                    radioData[0]===radioValue[0][2] ||
+                    radioData[1]===radioValue[1][2] ||
+                    radioData[2]===radioValue[2][1] ||
+                    radioData.includes(null)
+                ){//Not Eligible
+                    setPage('NotEligible')
+                    setCurrSection(0)
+                    console.log('NE')
+                }
+                else{//Eligible
+                    setPage('Eligible')
+                }
             }
             else
                 setCurrSection(currSection+1)
@@ -59,49 +63,89 @@ const Eligibility = (props) => {
     }
     return (
         
-        <>{(page === "NotEligible")?
-            <div className='Eligibility NotEligible'>
-                <div className="containerBody">
-                <div className='containerImage'>
-                    <img src="https://apply.teachforindia.org/assets/img/IneligibleMobile_02.jpg" alt=""/>
-                </div>
+        <>{(()=>{
+            if (page === "NotEligible"){
+                return(
+                <div className='Eligibility NotEligible'>
+                    <div className="containerBody">
+                        <div className='containerImage'>
+                            <img src="https://apply.teachforindia.org/assets/img/IneligibleMobile_02.jpg" alt=""/>
+                        </div>
                 
 
-                <div className="contentBox">
+                    <div className="contentBox">
                     
-                    <b style={{fontSize:"1.5rem"}} >{questions[currSection]}</b>
-                    <p>
-                        We wish you could join us, but it looks like you don't meet the criteria for the 2024 cohort of the Teach for India Fellowship, that is,
-                    </p>
-                    <ol>
-                        <li>Must graduate before June/July 2024</li>
-                        <li>Must be a citizen of India or Overseas Citizen of India</li>
-                        <li>Only one application is allowed per person per cohort year, that is, since July 2023</li>
-                    </ol>
-                    <p>If you're not eligible to work in India, you can apply to a <a href="https://teachforall.org/teach-your-country">Teach For All Fellowship in a different country</a>.</p>
-                    <br />
-                    <p>If you have already applied before since July 2023 or will not graduate before June/July 2024, you can visit <a href="http://www.teachforindia.org/">our website</a> to explore other internship or volunteering opportunities with us.</p>
-                    <br/>
-                    <p>If you actually fit all the criteria, answer the 'eligibility check' questions again!</p>
+                        <b style={{fontSize:"1.5rem"}} >
+                            Unfortunately, it looks like you're not eligible to apply this time!    
+                        </b>
+                        <p>
+                            We wish you could join us, but it looks like you don't meet the criteria for the 2024 cohort of the Teach for India Fellowship, that is,
+                        </p>
+                        <ol>
+                            <li>Must graduate before June/July 2024</li>
+                            <li>Must be a citizen of India or Overseas Citizen of India</li>
+                            <li>Only one application is allowed per person per cohort year, that is, since July 2023</li>
+                        </ol>
+                        <p>If you're not eligible to work in India, you can apply to a <a href="https://teachforall.org/teach-your-country">Teach For All Fellowship in a different country</a>.</p>
+                        <br />
+                        <p>If you have already applied before since July 2023 or will not graduate before June/July 2024, you can visit <a href="http://www.teachforindia.org/">our website</a> to explore other internship or volunteering opportunities with us.</p>
+                        <br/>
+                        <p>If you actually fit all the criteria, answer the 'eligibility check' questions again!</p>
 
-                    <div className="btn">
-                        <button 
-                        onClick={()=>{
-                            setPage(null)
-                            setRadioData(Array(3).fill(null))
-                        }}
-                        >
-                            Try Again
-                        </button>
+                        <div className="btn">
+                            <button 
+                                onClick={()=>{
+                                    setPage(null)
+                                    setRadioData(Array(3).fill(null))
+                                }}
+                            >
+                                Try Again
+                            </button>
                     </div>
                 </div>
             </div>
             
             </div>
+                )
+            }
+        else if(page === "Eligible"){
+            return(
+                <div className='Eligibility NotEligible'>
+            <div className="containerBody">
+            <div className='containerImage'>
+                <img 
+                    style={{height:"100%"}}
+                    src="https://apply.teachforindia.org/assets/img/signuppage_image.jpg" alt=""
+                />
+            </div>
+            
+
+            <div style={{justifyContent:"center"}} className="contentBox">
+                
+                <b style={{fontSize:"1.5rem"}} >
+                    You are eligible !
+                </b>
+                <p>
+                    You satisfy all our criterias and are eligible to apply.
+                    Click on the button below to proceed.
+                </p>
+                
+                <div className="btn">
+                    <button>
+                        <a href="https://apply.teachforindia.org/signup">
+                            Apply
+                        </a>
+                    </button>
+                </div>
+            </div>
+        </div>
         
-        :
-        
-            <div className='Eligibility'>
+        </div>
+            )
+        }
+        else{
+            return(
+                <div className='Eligibility'>
                 <div className="containerBody">
                 <div className='containerImage'>
                     <img src={images[currSection]} alt=""/>
@@ -159,8 +203,9 @@ const Eligibility = (props) => {
             </div>
             
             </div>
-        
-        }</>
+            )
+        }    
+        })()}</>
   )
 }
 
